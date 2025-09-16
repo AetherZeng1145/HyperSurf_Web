@@ -3,42 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperSurf - 诞生于手表，不至于手表</title>
+    <title>HyperSurf - 重新定义浏览体验</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* MiSans 字体引入 */
+        @font-face {
+            font-family: 'MiSans';
+            src: url('https://cdn.jsdelivr.net/npm/misans@0.1.0/MiSans-Normal.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'MiSans';
+            src: url('https://cdn.jsdelivr.net/npm/misans@0.1.0/MiSans-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'MiSans';
+            src: url('https://cdn.jsdelivr.net/npm/misans@0.1.0/MiSans-Semibold.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'MiSans';
+            src: url('https://cdn.jsdelivr.net/npm/misans@0.1.0/MiSans-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'MiSans';
+            src: url('https://cdn.jsdelivr.net/npm/misans@0.1.0/MiSans-Demibold.woff2') format('woff2');
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+        
         :root {
-            --primary: #2563eb;
-            --primary-glow: #3b82f6;
-            --secondary: #0ea5e9;
-            --accent: #60a5fa;
-            --dark: #0f172a;
-            --darker: #020617;
-            --light: #f8fafc;
+            --primary: #0066ff;
+            --primary-glow: #0088ff;
+            --secondary: #00a2ff;
+            --accent: #60c7ff;
+            --dark: #0a0e17;
+            --darker: #050811;
+            --light: #f0f6ff;
             --lighter: #ffffff;
-            --gray: #94a3b8;
-            --future-blue: #00d9ff;
-            --teal: #0d9488;
-            --indigo: #6366f1;
-            --success: #10b981;
+            --gray: #8a9ba8;
+            --future-blue: #00e4ff;
+            --teal: #00c2a8;
+            --indigo: #5d7cff;
+            --success: #00d5a7;
             --glass: rgba(255, 255, 255, 0.07);
             --glass-border: rgba(255, 255, 255, 0.12);
-            --card-bg: rgba(15, 23, 42, 0.6);
+            --card-bg: rgba(10, 14, 23, 0.7);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--indigo) 50%, var(--secondary) 100%);
+            --gradient-text: linear-gradient(135deg, #fff 20%, var(--primary) 40%, var(--accent) 80%);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', 'SF Pro Display', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'MiSans', 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
         }
         
         body {
-            background: linear-gradient(155deg, var(--darker) 0%, var(--dark) 60%, #1e293b 100%);
+            background: linear-gradient(155deg, var(--darker) 0%, var(--dark) 60%, #131a28 100%);
             color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
@@ -54,9 +94,9 @@
         
         /* 高级导航栏样式 */
         header {
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background: rgba(5, 8, 17, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             position: fixed;
             top: 0;
             width: 100%;
@@ -70,8 +110,8 @@
         }
         
         header.scrolled {
-            background: rgba(2, 6, 23, 0.95);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(5, 8, 17, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
             height: 70px;
         }
         
@@ -102,8 +142,7 @@
         
         .logo i {
             margin-right: 12px;
-            color: var(--primary);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 28px;
@@ -142,7 +181,7 @@
             transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--gradient-primary);
             transition: width 0.3s ease;
         }
         
@@ -152,7 +191,7 @@
         
         .nav-links a:hover {
             color: var(--lighter);
-            background: rgba(37, 99, 235, 0.1);
+            background: rgba(0, 102, 255, 0.1);
         }
         
         /* 高级按钮样式 */
@@ -161,7 +200,7 @@
             align-items: center;
             justify-content: center;
             padding: 16px 36px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--indigo) 100%);
+            background: var(--gradient-primary);
             color: white;
             border: none;
             border-radius: 14px;
@@ -170,7 +209,7 @@
             font-weight: 600;
             font-size: 17px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.35);
+            box-shadow: 0 6px 24px rgba(0, 102, 255, 0.4);
             position: relative;
             overflow: hidden;
             letter-spacing: 0.3px;
@@ -193,7 +232,7 @@
         
         .btn:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 102, 255, 0.5);
         }
         
         .btn i {
@@ -225,7 +264,7 @@
             left: -20%;
             width: 140%;
             height: 140%;
-            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 65%);
+            background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.2) 0%, transparent 65%);
             animation: pulse 15s ease-in-out infinite;
         }
         
@@ -244,14 +283,14 @@
             font-size: 5.5rem;
             font-weight: 800;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, #fff 20%, var(--primary) 40%, var(--secondary) 80%);
+            background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             opacity: 0;
             transform: translateY(50px);
             line-height: 1.1;
             letter-spacing: -1.5px;
-            text-shadow: 0 4px 30px rgba(37, 99, 235, 0.3);
+            text-shadow: 0 4px 30px rgba(0, 102, 255, 0.3);
         }
         
         .hero-subtitle {
@@ -288,7 +327,7 @@
             transform: translateY(40px);
             line-height: 1.2;
             letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff 30%, var(--primary-glow) 100%);
+            background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -438,7 +477,7 @@
         }
         
         .bar-new {
-            background: linear-gradient(to top, var(--primary), var(--indigo), #818cf8);
+            background: var(--gradient-primary);
             height: 100px;
         }
         
@@ -455,7 +494,7 @@
             top: -50px;
             font-weight: 700;
             font-size: 1.6rem;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(10, 14, 23, 0.95);
             padding: 10px 18px;
             border-radius: 24px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
@@ -473,7 +512,7 @@
             border-radius: 18px;
             font-size: 1.1rem;
             font-weight: 700;
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+            box-shadow: 0 8px 20px rgba(0, 213, 167, 0.35);
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
@@ -505,14 +544,14 @@
         .performance-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(37, 99, 235, 0.3);
+            border-color: rgba(0, 102, 255, 0.3);
         }
         
         .performance-icon {
             font-size: 3rem;
             color: var(--primary);
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -521,7 +560,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin: 20px 0;
-            background: linear-gradient(135deg, var(--primary), var(--indigo));
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -565,7 +604,7 @@
             top: 0;
             color: var(--primary);
             font-size: 2.6rem;
-            background: rgba(37, 99, 235, 0.1);
+            background: rgba(0, 102, 255, 0.1);
             width: 55px;
             height: 55px;
             border-radius: 50%;
@@ -577,7 +616,7 @@
         }
         
         .feature-list li:hover i {
-            background: rgba(37, 99, 235, 0.2);
+            background: rgba(0, 102, 255, 0.2);
             transform: scale(1.1);
         }
         
@@ -618,8 +657,8 @@
         }
         
         .platform-item:hover .platform-icon {
-            background: rgba(37, 99, 235, 0.1);
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
+            background: rgba(0, 102, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.25);
         }
         
         .platform-name {
@@ -664,7 +703,7 @@
             display: flex;
             align-items: center;
             height: 70px;
-            background: linear-gradient(90deg, rgba(37, 99, 235, 0.15), rgba(37, 99, 235, 0.08));
+            background: linear-gradient(90deg, rgba(0, 102, 255, 0.15), rgba(0, 102, 255, 0.08));
             border-radius: 16px;
             padding: 0 24px;
             border: 1px solid var(--glass-border);
@@ -672,7 +711,7 @@
         }
         
         .tbsp-layer:hover {
-            background: linear-gradient(90deg, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.12));
+            background: linear-gradient(90deg, rgba(0, 102, 255, 0.2), rgba(0, 102, 255, 0.12));
             transform: translateX(10px);
         }
         
@@ -726,7 +765,7 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 40px;
-            background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
+            background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -1px;
@@ -926,7 +965,7 @@
             font-weight: 700;
             margin-left: 16px;
             vertical-align: middle;
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+            box-shadow: 0 6px 20px rgba(0, 213, 167, 0.35);
         }
         
         /* 分区背景 */
@@ -935,7 +974,7 @@
         }
         
         .section-gradient {
-            background: linear-gradient(145deg, rgba(37, 99, 235, 0.08) 0%, rgba(15, 23, 42, 0.7) 70%, var(--dark) 100%);
+            background: linear-gradient(145deg, rgba(0, 102, 255, 0.08) 0%, rgba(10, 14, 23, 0.7) 70%, var(--dark) 100%);
         }
         
         /* 高级动画效果 */
@@ -960,7 +999,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.25) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(0, 102, 255, 0.25) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.3s;
             z-index: -1;
@@ -984,7 +1023,7 @@
         .vela-icon::before {
             content: "⛵";
             font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -1002,7 +1041,7 @@
         
         .particle {
             position: absolute;
-            background: rgba(37, 99, 235, 0.5);
+            background: rgba(0, 102, 255, 0.5);
             border-radius: 50%;
             opacity: 0;
             animation: particleFloat 15s infinite linear;
@@ -1038,9 +1077,42 @@
         
         .progress-bar {
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--indigo));
+            background: var(--gradient-primary);
             width: 0%;
             transition: width 0.2s ease;
+        }
+        
+        /* 3D悬浮效果 */
+        .hover-3d {
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .hover-3d:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 微光效果 */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
     </style>
 </head>
@@ -1099,7 +1171,7 @@
             </div>
             
             <!-- 高级图表设计 -->
-            <div class="chart-container">
+            <div class="chart-container hover-3d">
                 <div class="chart-title">性能对比: Tecko-3C vs Tecko转译层</div>
                 
                 <div class="charts-comparison">
@@ -1108,8 +1180,8 @@
                         <div class="chart">
                             <div class="chart-bar-wrapper">
                                 <div class="bar bar-tecko3c"></div>
-                                <div class="chart-value">2.4s</div>
-                                <div class="improvement-badge">降低 58%</div>
+                                <div class="chart-value">3.0s</div>
+                                <div class="improvement-badge">降低约 66%</div>
                                 <div class="chart-label">Tecko-3C</div>
                             </div>
                             <div class="chart-bar-wrapper">
@@ -1125,8 +1197,8 @@
                         <div class="chart">
                             <div class="chart-bar-wrapper">
                                 <div class="bar bar-tecko3c"></div>
-                                <div class="chart-value">4.8次</div>
-                                <div class="improvement-badge">减少 58%</div>
+                                <div class="chart-value">4.7次</div>
+                                <div class="improvement-badge">减少约 57%</div>
                                 <div class="chart-label">Tecko-3C</div>
                             </div>
                             <div class="chart-bar-wrapper">
@@ -1139,21 +1211,21 @@
                 </div>
                 
                 <div class="performance-comparison">
-                    <div class="performance-card">
+                    <div class="performance-card hover-3d">
                         <div class="performance-icon"><i class="fas fa-clock"></i></div>
                         <div class="performance-value">1.0s</div>
                         <div class="performance-label">Tecko转译层渲染时间</div>
-                        <div class="performance-improvement">提升 58%</div>
+                        <div class="performance-improvement">提升约 66%</div>
                     </div>
                     
-                    <div class="performance-card">
+                    <div class="performance-card hover-3d">
                         <div class="performance-icon"><i class="fas fa-bug"></i></div>
                         <div class="performance-value">2.0次</div>
                         <div class="performance-label">每100次操作崩溃次数</div>
-                        <div class="performance-improvement">减少 58%</div>
+                        <div class="performance-improvement">减少约 57%</div>
                     </div>
                     
-                    <div class="performance-card">
+                    <div class="performance-card hover-3d">
                         <div class="performance-icon"><i class="fas fa-bolt"></i></div>
                         <div class="performance-value">58%</div>
                         <div class="performance-label">整体性能提升</div>
@@ -1267,22 +1339,22 @@
                     <p class="content-text-light">TBSP 是一个分层架构的基础服务平台，为 HyperSurf 提供核心技术支持</p>
                 </div>
                 
-                <div class="tbsp-diagram">
+                <div class="tbsp-diagram hover-3d">
                     <div class="tbsp-layer">
                         <span class="layer-name">应用层</span>
-                        <span class="layer-description">HyperSurf 浏览器及第三方应用</span>
+                        <span class="layer-description">HyperSurf 浏览器及第三方插件</span>
                     </div>
                     <div class="tbsp-layer">
                         <span class="layer-name">服务层</span>
-                        <span class="layer-description">Tecko 转译层、安全服务、同步服务</span>
+                        <span class="layer-description">Tecko 转译层、安全服务、同步服务、激活验证服务</span>
                     </div>
                     <div class="tbsp-layer">
                         <span class="layer-name">核心层</span>
-                        <span class="layer-description">TBSP 核心框架与系统接口</span>
+                        <span class="layer-description">TBSP 核心框架</span>
                     </div>
                 </div>
                 
-                <div class="github-open-source">
+                <div class="github-open-source hover-3d">
                     <p class="content-text">我们将随着 HyperSurf 发布同步开源在 <a href="#" class="github-link"><i class="fab fa-github github-icon"></i>Github</a> 中</p>
                     <p class="content-text-light">拥抱开源，与全球开发者共同推动技术进步</p>
                 </div>
@@ -1331,7 +1403,7 @@
         </div>
     </section>
 
-    <section style="background: linear-gradient(135deg, var(--primary), var(--indigo)); color: white; text-align: center;">
+    <section style="background: var(--gradient-primary); color: white; text-align: center;">
         <div class="container">
             <h2 class="section-title">就是现在，时机正好</h2>
             
